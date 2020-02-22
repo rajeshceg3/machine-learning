@@ -8,7 +8,7 @@ blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 1.0,
 	(300, 300), (104.0, 177.0, 123.0))
 
 # Load pre-trained model
-net = cv2.dnn.readNetFromCaffe("deploy.prototxt", "res10_300x300_ssd_iter_140000.caffemodel")
+net = cv2.dnn.readNetFromCaffe("faceDetectionModel_ssd\deploy.prototxt", "faceDetectionModel_ssd\res10_300x300_ssd_iter_140000.caffemodel")
 
 # Feed the blob to model
 net.setInput(blob)

@@ -11,10 +11,10 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 	"sofa", "train", "tvmonitor"]
 
 # Load pretrained Caffee model
-net = cv2.dnn.readNetFromCaffe("deploy.prototxt","mobilenet_iter_73000.caffemodel")
+net = cv2.dnn.readNetFromCaffe("objTrackerModel\deploy.prototxt","objTrackerModel\mobilenet_iter_73000.caffemodel")
 
 
-vs = FileVideoStream("Video05.mp4").start()
+vs = FileVideoStream("singleObject.mp4").start()
 
 # Create dlib_tracker with dlib
 dlib_tracker = dlib.correlation_dlib_tracker()

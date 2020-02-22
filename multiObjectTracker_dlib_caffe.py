@@ -11,8 +11,8 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 	"sofa", "train", "tvmonitor"]
 
 # Load pretrained neural network from Caffee
-net = cv2.dnn.readNetFromCaffe("deploy.prototxt","mobilenet_iter_73000.caffemodel")
-vs = FileVideoStream("Video07.mp4").start()
+net = cv2.dnn.readNetFromCaffe("objTrackerModel\deploy.prototxt","objTrackerModel\mobilenet_iter_73000.caffemodel")
+vs = FileVideoStream("multiObject.mp4").start()
 
 # Initialize empty list for trackers and labels
 trackers = []

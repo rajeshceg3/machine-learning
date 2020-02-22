@@ -9,7 +9,7 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 	"sofa", "train", "tvmonitor"]
 
 # Load pretrained neural network from Caffee
-net = cv2.dnn.readNetFromCaffe("deploy.prototxt", "mobilenet_iter_73000.caffemodel")
+net = cv2.dnn.readNetFromCaffe("imgClassifierModel_mobilenet/deploy.prototxt", "imgClassifierModel_mobilenet/mobilenet_iter_73000.caffemodel")
 
 # Process the image to get blob output
 image = cv2.imread("bookshelf_cat.jpg")

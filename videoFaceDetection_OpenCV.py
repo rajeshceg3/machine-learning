@@ -4,9 +4,9 @@ import imutils
 import cv2
 
 # Load pretrained neural network from Caffee
-net = cv2.dnn.readNetFromCaffe("deploy.prototxt", "res10_300x300_ssd_iter_140000.caffemodel")
+net = cv2.dnn.readNetFromCaffe("faceDetectionModel_ssd\deploy.prototxt", "faceDetectionModel_ssd\res10_300x300_ssd_iter_140000.caffemodel")
 
-vs = FileVideoStream("Video Of People Walking.mp4").start()
+vs = FileVideoStream("People.mp4").start()
 probability_threshold = 0.5
 
 # Process video frames

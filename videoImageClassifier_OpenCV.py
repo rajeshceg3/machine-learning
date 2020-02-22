@@ -14,10 +14,10 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
 # Load pretrained Caffee neural network 
-net = cv2.dnn.readNetFromCaffe("deploy.prototxt", "mobilenet_iter_73000.caffemodel")
+net = cv2.dnn.readNetFromCaffe("imgClassifierModel_mobilenet/deploy.prototxt", "imgClassifierModel_mobilenet/mobilenet_iter_73000.caffemodel")
 
 # Initialize video stream
-vs = FileVideoStream("video_01.mp4").start()
+vs = FileVideoStream("video.mp4").start()
 
 probability_treshold = 0.76
 
