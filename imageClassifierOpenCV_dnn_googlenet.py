@@ -5,14 +5,14 @@ import time
 image = cv2.imread("eagle.jpg")
 
 # Get labels from sysnet
-slices = open("synset_words.txt").read().strip().split("\n")
+slices = open("imgClassifierModel_googlenet/synset_words.txt").read().strip().split("\n")
 classes = [e[e.find(" ") + 1:].split(",")[0] for e in slices]
 
 # Process the image to get a blob
 Outputblob = cv2.dnn.blobFromImage(image, 1, (224, 224), (104, 117, 123))
 
 # Load pretrained caffe model
-net = cv2.dnn.readNetFromCaffe("bvlc_googlenet.prototxt", "bvlc_googlenet.caffemodel")
+net = cv2.dnn.readNetFromCaffe("imgClassifierModel_googlenet/bvlc_googlenet.prototxt", "imgClassifierModel_googlenet/bvlc_googlenet.caffemodel")
 
 net.setInput(Outputblob)
 preds = net.forward()
