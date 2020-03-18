@@ -21,7 +21,7 @@ for i in range(0, predictions.shape[2]):
 		# Identify face location
 		box = predictions[0, 0, i, 3:7] * np.array([w, h, w, h])
 		(startX, startY, endX, endY) = box.astype("int")
- 
+
 		# Draw a box around face
 		text = "{:.2f}%".format(probability * 100)
 		y = startY - 10 if startY - 10 > 10 else startY + 10
