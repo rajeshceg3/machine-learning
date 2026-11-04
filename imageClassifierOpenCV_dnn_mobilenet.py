@@ -1,4 +1,5 @@
 import cv2
+from image_demo_io import options, model, finish
 import numpy as np
 
 # SSD is used along with mobilenet neural network. 
@@ -9,10 +10,10 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 	"sofa", "train", "tvmonitor"]
 
 # Load pretrained neural network from Caffee
-net = cv2.dnn.readNetFromCaffe("imgClassifierModel_mobilenet/deploy.prototxt", "imgClassifierModel_mobilenet/mobilenet_iter_73000.caffemodel")
+net = model('imgClassifierModel_mobilenet', 'deploy.prototxt.txt', 'mobilenet_iter_73000.caffemodel')
 
 # Process the image to get blob output
-image = cv2.imread("bookshelf_cat.jpg")
+args, image = options('bookshelf_cat.jpg')
 (h, w) = image.shape[:2]
 OutputBlob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 0.007843, (300, 300), 127.5)
 
@@ -23,6 +24,7 @@ net.setInput(OutputBlob)
 predictions = net.forward()
 
 probability_threshold = 0.3
+results = []
 for i in np.arange(0, predictions.shape[2]):
 	probability = predictions[0, 0, i, 2]
 
@@ -34,11 +36,10 @@ for i in np.arange(0, predictions.shape[2]):
 		box = predictions[0, 0, i, 3:7] * np.array([w, h, w, h])
 		(startX, startY, endX, endY) = box.astype("int")
 
+		results.append({'label': CLASSES[index], 'probability': float(probability), 'box': [int(v) for v in box]})
 		# Display the results
 		label = "{}: {:.2f}%".format(CLASSES[index], probability * 100)
 		cv2.rectangle(image, (startX, startY), (endX, endY),(0,255,0), 2)
 		cv2.putText(image, label, (startX, startY),cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,255,0), 2)
 
-# Display the image
-cv2.imshow("Result", image)
-cv2.waitKey(0)
+finish(args, image, results)
